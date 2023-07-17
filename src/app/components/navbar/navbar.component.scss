@@ -1,0 +1,144 @@
+.container {
+  min-height: 80px;
+  background-color: var(--red);
+  padding: 0px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.item {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger {
+  display: none;
+}
+
+.item:first-child,
+.item:last-child {
+  flex: 1;
+}
+
+.item:last-child {
+  justify-content: flex-end;
+}
+
+.item:first-child {
+  justify-content: flex-start;
+}
+
+.imgContainer {
+  cursor: pointer;
+}
+
+.callButton {
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.texts {
+  margin-left: 20px;
+  color: white;
+}
+
+.text:first-child {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.text:last-child {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  color: white;
+}
+
+.listItem {
+  cursor: pointer;
+  margin: 20px;
+  font-weight: 300;
+}
+
+.cart {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 12px;
+  font-weight: 500;
+  color: var(--red);
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0px 10px;
+  }
+  .list {
+    flex-direction: column;
+  }
+  .burger {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .item:last-child {
+    justify-content: flex-end;
+  }
+  .menu {
+    display: flex !important;
+  }
+  .item:nth-child(3) {
+    display: none;
+  }
+  .imgContainer {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0px 10px;
+  }
+  .item:last-child {
+    justify-content: center;
+  }
+  .imgContainer {
+    display: none;
+  }
+  .listItem {
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .item:first-child {
+    display: none;
+  }
+}

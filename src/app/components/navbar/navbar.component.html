@@ -1,0 +1,73 @@
+<nav>
+  <div class="container" [style]="containerStyles">
+    <div class="item">
+      <div class="callButton">
+        <img
+          src="/assets/img/telephone.png"
+          alt=""
+          width="32"
+          height="32"
+          priority
+        />
+      </div>
+      <div class="texts">
+        <div class="text"></div>
+        <div class="text"></div>
+      </div>
+    </div>
+    <div class="item burger">
+      <img
+        *ngIf="!burgerOpen"
+        src="/assets/img/hamburger-menu-white.svg"
+        alt=""
+        height="32px"
+        width="32px"
+        (click)="handleBurgerClick()"
+        aria-hidden="true"
+      />
+      <img
+        *ngIf="burgerOpen"
+        src="/assets/img/close-white.svg"
+        alt=""
+        height="28px"
+        width="28px"
+        (click)="handleBurgerClick()"
+        aria-hidden="true"
+      />
+    </div>
+    <div class="item" [class.menu]="burgerOpen">
+      <ul class="list">
+        <a routerLink="">
+          <li class="listItem">Homepage</li>
+        </a>
+        <li class="listItem">Products</li>
+        <li class="listItem">Menu</li>
+        <a routerLink="">
+          <img
+            src="/assets/img/logo-white.png"
+            alt="Gricko"
+            width="120px"
+            height="50px"
+            class="imgContainer"
+          />
+        </a>
+        <li class="listItem">Events</li>
+        <li class="listItem">Blog</li>
+        <li class="listItem">Contact</li>
+      </ul>
+    </div>
+    <div class="item">
+      <a routerLink="/cart">
+        <div class="cart">
+          <img
+            src="/assets/img/basket-white.png"
+            width="30px"
+            height="30px"
+            alt="Cart"
+          />
+          <div class="counter">2</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>
