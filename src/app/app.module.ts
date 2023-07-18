@@ -9,6 +9,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FeaturedComponent } from './components/featured/featured.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { HomeComponent } from './pages/home/home.component';
     FooterComponent,
     PageNotFoundComponent,
     HomeComponent,
+    FeaturedComponent,
+    ProductsListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   providers: [],

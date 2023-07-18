@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="arrowContainer" style="left: 0">
+    <img
+      src="/assets/img/arrowl.png"
+      (click)="handleArrowClick('l')"
+      aria-hidden="true"
+      alt=""
+    />
+  </div>
+  <div class="wrapper" [style.transform]="translate">
+    <div *ngFor="let img of images" class="imgContainer">
+      <img src="{{ '/assets' + img }}" alt="Featured" />
+    </div>
+  </div>
+  <div
+    class="arrowContainer"
+    (click)="handleArrowClick('r')"
+    style="right: 0"
+    aria-hidden="true"
+  >
+    <img src="/assets/img/arrowr.png" alt="" />
+  </div>
+</div>

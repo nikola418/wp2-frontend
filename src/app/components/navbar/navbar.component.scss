@@ -1,3 +1,9 @@
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
 .container {
   min-height: 80px;
   background-color: var(--red);
@@ -5,9 +11,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 999;
 }
 
 .item {
