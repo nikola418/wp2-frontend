@@ -1,0 +1,79 @@
+:host {
+  width: 20%;
+  min-width: 254px;
+  margin: 12px 8px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  padding: 20px 40px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+img {
+  height: 250px;
+}
+
+.container:hover {
+  background-image: linear-gradient(
+    to right,
+    #008c46,
+    #008c46 33%,
+    white 33%,
+    white 66%,
+    #cd212a 66%,
+    #cd212a
+  );
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--brown);
+  max-width: 100%;
+  display: block;
+  text-overflow: ellipsis;
+  text-align: center;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
+}
+
+.price {
+  text-align: center;
+  color: var(--green);
+}
+
+.desc {
+  text-align: center;
+  color: var(--green);
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .price,
+  .desc {
+    font-size: 24px;
+  }
+}

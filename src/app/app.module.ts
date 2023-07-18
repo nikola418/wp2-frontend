@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './pages/home/home.component';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProductsListComponent } from './components/products-list/products-list.
     HomeComponent,
     FeaturedComponent,
     ProductsListComponent,
+    ProductCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   providers: [],
