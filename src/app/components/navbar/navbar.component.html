@@ -17,7 +17,7 @@
     </div>
     <div class="item burger">
       <img
-        *ngIf="!burgerOpen"
+        *ngIf="!burgerOpen; else close"
         src="/assets/img/hamburger-menu-white.svg"
         alt=""
         height="32px"
@@ -25,15 +25,17 @@
         (click)="handleBurgerClick()"
         aria-hidden="true"
       />
-      <img
-        *ngIf="burgerOpen"
-        src="/assets/img/close-white.svg"
-        alt=""
-        height="28px"
-        width="28px"
-        (click)="handleBurgerClick()"
-        aria-hidden="true"
-      />
+      <ng-template #close>
+        <img
+          *ngIf="burgerOpen"
+          src="/assets/img/close-white.svg"
+          alt=""
+          height="28px"
+          width="28px"
+          (click)="handleBurgerClick()"
+          aria-hidden="true"
+        />
+      </ng-template>
     </div>
     <div class="item" [class.menu]="burgerOpen">
       <ul class="list">
