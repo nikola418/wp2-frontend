@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductsPageComponent implements OnInit {
   product: {
     img?: string;
     id?: string;

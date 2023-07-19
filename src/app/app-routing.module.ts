@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProductComponent } from './pages/product/product.component';
+import { LayoutComponent } from './core/components/layout/layout.component';
+import { HomePageComponent } from './pages/home/home.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { ProductsModule } from './pages/products/products.module';
 
 const routes: Routes = [
   {
@@ -11,15 +11,19 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'product/:id', component: ProductComponent },
+      { path: 'home', component: HomePageComponent },
+      { path: 'products', loadChildren: () => ProductsModule },
       { path: '**', component: PageNotFoundComponent },
     ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

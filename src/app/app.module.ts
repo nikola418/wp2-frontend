@@ -4,15 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { HomeComponent } from './pages/home/home.component';
-import { FeaturedComponent } from './components/featured/featured.component';
-import { ProductsListComponent } from './components/products-list/products-list.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductComponent } from './pages/product/product.component';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { LayoutComponent } from './core/components/layout/layout.component';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { HomeModule } from './pages/home/home.mogule';
+import { RouterModule } from '@angular/router';
+import { ProductsModule } from './pages/products/products.module';
 
 @NgModule({
   declarations: [
@@ -21,14 +19,16 @@ import { ProductComponent } from './pages/product/product.component';
     LayoutComponent,
     FooterComponent,
     PageNotFoundComponent,
-    HomeComponent,
-    FeaturedComponent,
-    ProductsListComponent,
-    ProductCardComponent,
-    ProductComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    StoreModule.forRoot({}, {}),
+    HomeModule,
+    ProductsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [RouterModule],
 })
 export class AppModule {}
