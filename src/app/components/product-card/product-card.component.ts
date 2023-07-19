@@ -7,10 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input()
-  product = {
-    title: '',
-    img: '',
-    prices: [120],
-    desc: '',
+  product!: {
+    id: number;
+    title: string;
+    img: string;
+    prices: number[];
+    desc: string;
   };
 }

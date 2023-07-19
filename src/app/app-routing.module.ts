@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductComponent } from './pages/product/product.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'product/:id', component: ProductComponent },
       { path: '**', component: PageNotFoundComponent },
     ],
   },

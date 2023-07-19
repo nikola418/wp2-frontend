@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     FeaturedComponent,
     ProductsListComponent,
     ProductCardComponent,
+    ProductComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   providers: [],
