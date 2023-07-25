@@ -1,0 +1,48 @@
+.container {
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  font-family: inherit;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: var(--red);
+  margin-bottom: 20px;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.error {
+  font-size: 13px;
+  color: var(--red);
+}
+
+.link {
+  color: var(--red);
+}
+
+.textarea {
+  font-family: inherit;
+  height: 120px;
+  padding: 10px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}

@@ -6,6 +6,5 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [ProductsPageComponent],
   imports: [CommonModule, ProudctsRoutingModule],
-  exports: [ProductsPageComponent],
 })
 export class ProductsModule {}

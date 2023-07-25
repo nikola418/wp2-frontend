@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="wrapper">
+    <h1>Sign Up</h1>
+    <input type="text" class="input" placeholder="Email" />
+    <input type="password" class="input" placeholder="Password" />
+    <input type="text" class="input" placeholder="Full Name" />
+    <input type="text" class="input" placeholder="Phone Number" />
+    <textarea rows="5" placeholder="Address" class="textarea"></textarea>
+    <p>
+      Already have an account?<span>
+        <a class="link" replaceUrl="true" routerLink="/auth/signin"
+          >&nbsp;Sign In</a
+        >
+      </span>
+    </p>
+    <button class="button">Sign In</button>
+    <span *ngIf="error" class="error">Invalid Credentials!</span>
+  </div>
+</div>

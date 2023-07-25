@@ -20,10 +20,14 @@ nav {
   justify-content: center;
 }
 
-.burger {
+.item:nth-child(2) {
   display: none;
 }
 
+.burger {
+  width: 32px;
+  height: 32px;
+}
 .item:first-child,
 .item:last-child {
   flex: 1;
@@ -38,6 +42,8 @@ nav {
 }
 
 .imgContainer {
+  width: 120px;
+  height: 50px;
   cursor: pointer;
 }
 
@@ -81,6 +87,8 @@ nav {
 
 .cart {
   position: relative;
+  width: 30px;
+  height: 30px;
 }
 
 .counter {
@@ -106,10 +114,18 @@ nav {
   .list {
     flex-direction: column;
   }
-  .burger {
+  .item:nth-child(2) {
     display: flex;
     flex: 1;
     justify-content: flex-start;
+  }
+  .burger {
+    width: 32px;
+    height: 32px;
+  }
+  .close {
+    width: 28px;
+    height: 28px;
   }
   .item:last-child {
     justify-content: flex-end;

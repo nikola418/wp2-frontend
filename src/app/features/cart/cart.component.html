@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="left">
+    <table class="table">
+      <thead>
+        <tr class="trTitle">
+          <th>Product</th>
+          <th>Name</th>
+          <th>Extras</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="tr">
+          <td>
+            <div class="imgContainer">
+              <img src="{{ product.img }}" alt="" class="img" />
+            </div>
+          </td>
+          <td>
+            <span class="name">{{ product.title }}</span>
+          </td>
+          <td>
+            <span class="extras">
+              <span *ngFor="let extra of product.extras">
+                {{ extra.text }}
+              </span>
+            </span>
+          </td>
+          <td><span class="price">112</span></td>
+          <td><span class="quantity"></span></td>
+          <td><span class="total"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="right">
+    <div class="wrapper">
+      <h2 class="title">CART TOTAL</h2>
+      <div class="totalText">
+        <b class="totalTextTitle">Subtotal:</b>
+      </div>
+      <div class="totalText"><b class="totalTextTitle">Discount:</b>$0.0</div>
+      <div class="totalText">
+        <b class="totalTextTitle">Total:</b>
+      </div>
+      <div *ngIf="isOpen; else checkoutButton" class="paymentMethods">
+        <button (click)="handleCash()" class="payButton">
+          Cash on Delivery
+        </button>
+      </div>
+      <ng-template #checkoutButton>
+        <button (click)="handleCheckout()" class="button">CHECKOUT!</button>
+      </ng-template>
+    </div>
+  </div>
+  <app-order-details *ngIf="isCash"></app-order-details>
+</div>

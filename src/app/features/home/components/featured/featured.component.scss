@@ -31,12 +31,6 @@
   height: 75%;
 }
 
-img {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-}
-
 @media screen and (max-width: 480px) {
   .container {
     height: 50vh;

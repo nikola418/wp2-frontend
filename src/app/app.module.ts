@@ -8,9 +8,6 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { HomeModule } from './pages/home/home.mogule';
-import { RouterModule } from '@angular/router';
-import { ProductsModule } from './pages/products/products.module';
 
 @NgModule({
   declarations: [
@@ -20,15 +17,9 @@ import { ProductsModule } from './pages/products/products.module';
     FooterComponent,
     PageNotFoundComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    HomeModule,
-    ProductsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [RouterModule],
+  exports: [AppRoutingModule],
 })
 export class AppModule {}

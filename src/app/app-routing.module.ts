@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/components/layout/layout.component';
-import { HomePageComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { ProductsModule } from './pages/products/products.module';
+import { ProductsModule } from './features/products/products.module';
+import { AuthModule } from './features/auth/auth.module';
+import { HomeModule } from './features/home/home.module';
+import { CartModule } from './features/cart/cart.module';
 
 const routes: Routes = [
   {
@@ -11,7 +13,12 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: HomePageComponent },
+      { path: 'home', loadChildren: () => HomeModule },
+      {
+        path: 'cart',
+        loadChildren: () => CartModule,
+      },
+      { path: 'auth', loadChildren: () => AuthModule },
       { path: 'products', loadChildren: () => ProductsModule },
       { path: '**', component: PageNotFoundComponent },
     ],
