@@ -6,6 +6,7 @@ import { ProductsModule } from './features/products/products.module';
 import { AuthModule } from './features/auth/auth.module';
 import { HomeModule } from './features/home/home.module';
 import { CartModule } from './features/cart/cart.module';
+import { AdminModule } from './features/admin/admin.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
         loadChildren: () => CartModule,
       },
       { path: 'auth', loadChildren: () => AuthModule },
+      { path: 'admin', loadChildren: () => AdminModule },
       { path: 'products', loadChildren: () => ProductsModule },
       { path: '**', component: PageNotFoundComponent },
     ],

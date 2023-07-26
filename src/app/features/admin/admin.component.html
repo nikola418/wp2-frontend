@@ -1,1 +1,62 @@
-<p>admin works!</p>
+<div class="container">
+  <div class="item">
+    <h1 class="title">Products</h1>
+    <table class="table">
+      <thead>
+        <tr class="trTitle">
+          <td>Image</td>
+          <td>Id</td>
+          <td>Title</td>
+          <td>Price</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="trTitle">
+          <td>
+            <img [src]="product.img" alt="" />
+          </td>
+          <td>{{ product._id.slice(0, 5) }}</td>
+          <td>{{ product.title }}</td>
+          <td>{{ product.sizes[0].price }}</td>
+          <td>
+            <button class="button">Edit</button>
+            <button class="button">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="item">
+    <h1 class="title">Orders</h1>
+    <table class="table">
+      <thead>
+        <tr class="trTitle">
+          <td>Id</td>
+          <td>Customer</td>
+          <td>Total</td>
+          <td>Payment</td>
+          <td>Status</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let order of orders">
+        <tr class="trTitle">
+          <td>{{ order._id }}</td>
+          <td>{{ order.customer }}</td>
+          <td>{{ order.total }}</td>
+          <td>
+            <span *ngIf="order.paymentMethod.value === 0; else paypal"
+              >Cash</span
+            >
+            <ng-template #paypal><span>PayPal</span></ng-template>
+          </td>
+          <td>{{ order.status.name }}</td>
+          <td>
+            <button class="button">Next Stage</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
