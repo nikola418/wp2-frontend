@@ -1,11 +1,37 @@
 <div class="container">
   <div class="wrapper">
     <h1>Sign Up</h1>
-    <input type="text" class="input" placeholder="Email" />
-    <input type="password" class="input" placeholder="Password" />
-    <input type="text" class="input" placeholder="Full Name" />
-    <input type="text" class="input" placeholder="Phone Number" />
-    <textarea rows="5" placeholder="Address" class="textarea"></textarea>
+    <input type="text" class="input" placeholder="Email" [(ngModel)]="email" />
+    <input
+      type="password"
+      class="input"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+    <input
+      type="text"
+      class="input"
+      placeholder="First Name"
+      [(ngModel)]="name"
+    />
+    <input
+      type="text"
+      class="input"
+      placeholder="Last Name"
+      [(ngModel)]="surname"
+    />
+    <input
+      type="text"
+      class="input"
+      placeholder="Phone Number"
+      [(ngModel)]="phoneNumber"
+    />
+    <textarea
+      rows="5"
+      placeholder="Address"
+      class="textarea"
+      [(ngModel)]="address"
+    ></textarea>
     <p>
       Already have an account?<span>
         <a class="link" replaceUrl="true" routerLink="/auth/signin"
@@ -13,7 +39,7 @@
         >
       </span>
     </p>
-    <button class="button">Sign In</button>
+    <button class="button" (click)="handleSignUp()">Sign In</button>
     <span *ngIf="error" class="error">Invalid Credentials!</span>
   </div>
 </div>

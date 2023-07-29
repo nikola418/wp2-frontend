@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { addToCart } from 'src/app/core/actions/cart.actions';
+import { IPizza } from 'src/app/core/models/pizza';
 
 @Component({
   selector: 'app-product-card',
@@ -7,11 +10,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input()
-  product!: {
-    id: number;
-    title: string;
-    img: string;
-    prices: number[];
-    desc: string;
-  };
+  product!: IPizza;
+
+  constructor(private store: Store) {}
+
+  addToCart() {
+    this.store.dispatch(addToCart(this.product));
+  }
 }
