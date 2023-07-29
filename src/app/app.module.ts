@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.development';
 import { cartReducer } from './core/reducers/cart';
 import { userReducer } from './core/reducers/user';
+import { httpInterceptorProviders } from './core/interceptors/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { userReducer } from './core/reducers/user';
     StoreModule.forRoot({ cart: cartReducer, user: userReducer }),
     environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [CookieService],
+  providers: [CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule],
 })

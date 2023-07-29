@@ -14,14 +14,10 @@ export class AuthService {
   ) {}
 
   signIn(email: string, password: string) {
-    return this.httpClient.post(
-      `${this.apiUrl}/sign-in`,
-      {
-        email,
-        password,
-      },
-      { withCredentials: true },
-    );
+    return this.httpClient.post(`${this.apiUrl}/sign-in`, {
+      email,
+      password,
+    });
   }
 
   signUp(
@@ -40,6 +36,14 @@ export class AuthService {
       phoneNumber,
       address,
     });
+  }
+
+  signOut() {
+    return this.httpClient.get(`${this.apiUrl}/sign-out`, {});
+  }
+
+  me() {
+    return this.httpClient.get(`${this.apiUrl}/me`);
   }
 
   canActivate(role: number) {
