@@ -2,9 +2,10 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
-export const canActivateAdmin: CanActivateFn = (route, state) => {
+export const canActivateAdmin: CanActivateFn = async (route, state) => {
   const router: Router = inject(Router);
-  if (inject(AuthService).canActivate(1)) return true;
-  router.navigate(['/']);
+  const res = await inject(AuthService).isAdmin();
+  if (res) return true;
+  router.navigate(['/home']);
   return false;
 };

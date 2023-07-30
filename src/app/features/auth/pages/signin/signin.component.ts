@@ -19,7 +19,7 @@ export class SignInPageComponent {
   ) {}
 
   handleSignIn() {
-    this.authService.signIn(this.email, this.password).subscribe();
+    this.authService.signIn(this.email, this.password);
 
     this.router.navigate(['/home']);
   }

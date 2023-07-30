@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { CookieService } from 'ngx-cookie-service';
+import { IUser } from '../../models/user';
+import { Store, select } from '@ngrx/store';
+import { selectUser } from '../../selectors/user';
+import { setUser } from '../../actions/user.actions';
+import { UserRole } from '../../enums/user-role';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +17,18 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService,
+    private store: Store<IUser>,
   ) {}
 
   signIn(email: string, password: string) {
-    return this.httpClient.post(`${this.apiUrl}/sign-in`, {
-      email,
-      password,
-    });
+    firstValueFrom(
+      this.httpClient.post(`${this.apiUrl}/sign-in`, {
+        email,
+        password,
+      }),
+    );
+
+    return this.me();
   }
 
   signUp(
@@ -42,14 +53,22 @@ export class AuthService {
     return this.httpClient.get(`${this.apiUrl}/sign-out`, {});
   }
 
-  me() {
-    return this.httpClient.get(`${this.apiUrl}/me`);
+  async me() {
+    const savedUser = await firstValueFrom(this.store.select(selectUser));
+    if (savedUser) {
+      return savedUser;
+    }
+
+    const user = await firstValueFrom(
+      this.httpClient.get<IUser>(`${this.apiUrl}/me`),
+    );
+
+    this.store.dispatch(setUser(user));
+    return user;
   }
 
-  canActivate(role: number) {
-    if (role === 0) {
-      return true;
-    }
-    return false;
+  async isAdmin() {
+    const savedUser = await firstValueFrom(this.store.select(selectUser));
+    return savedUser !== null && savedUser.role.value === UserRole.Admin;
   }
 }

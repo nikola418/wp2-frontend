@@ -6,10 +6,6 @@ const initialUserState: { user: IUser | null } = { user: null };
 
 export const userReducer = createReducer(
   initialUserState,
-  on(setUser, (_, props) => {
-    return { user: props };
-  }),
-  on(dropUser, (_) => {
-    return { user: null };
-  }),
+  on(setUser, (_, props) => ({ user: props })),
+  on(dropUser, (_) => ({ user: null })),
 );

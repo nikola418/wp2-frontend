@@ -2,15 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ICart } from '../models/cart';
 
 export const selectCartCount = createSelector(
-  createFeatureSelector('cart'),
-  (state: ICart) => {
-    return state.quantity;
-  },
+  createFeatureSelector<ICart>('cart'),
+  (state) => state.quantity,
 );
 
 export const selectCartTotal = createSelector(
-  createFeatureSelector('cart'),
-  (state: ICart) => {
-    return state.total;
-  },
+  createFeatureSelector<ICart>('cart'),
+  (state) => state.total,
 );
