@@ -1,12 +1,15 @@
-<a [routerLink]="['/products', product.id]">
+<a [routerLink]="['/products', pizza.id]">
   <div class="container">
     <div class="imgContainer">
-      <img src="{{ product.img }}" alt="{{ product.title + ' image' }}" />
+      <img
+        src="{{ pizza.img ?? './assets/img/no-image.png' }}"
+        alt="{{ pizza.title + ' image' }}"
+      />
     </div>
     <div class="info">
-      <h1 class="title">{{ product.title }}</h1>
-      <p class="price">{{ product.sizes[0].price }}</p>
-      <p class="desc">{{ product.desc }}</p>
+      <h1 class="title">{{ pizza.title }}</h1>
+      <p class="price">{{ pizza.sizes[0].price }}</p>
+      <p class="desc">{{ pizza.desc }}</p>
     </div>
   </div>
 </a>

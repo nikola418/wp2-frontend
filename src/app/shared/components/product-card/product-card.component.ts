@@ -10,11 +10,18 @@ import { IPizza } from 'src/app/core/models/pizza';
 })
 export class ProductCardComponent {
   @Input()
-  product!: IPizza;
+  pizza: IPizza = {
+    desc: '',
+    title: '',
+    extras: [],
+    id: '',
+    sizes: [],
+    img: '',
+  };
 
   constructor(private store: Store) {}
 
   addToCart() {
-    this.store.dispatch(addToCart(this.product));
+    this.store.dispatch(addToCart(this.pizza));
   }
 }

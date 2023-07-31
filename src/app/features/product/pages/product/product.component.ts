@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IPizza } from 'src/app/core/models/pizza';
+import { PizzaService } from 'src/app/core/services/pizza/pizza.service';
 
 @Component({
   selector: 'app-product',
@@ -7,60 +9,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductPageComponent implements OnInit {
-  product: {
-    img?: string;
-    id?: string;
-    sizes?: { dimension: { value: number; name: string }; price: number }[];
-    extras?: { text: string; price: number }[];
-  } = {
-    img: 'https://res.cloudinary.com/dv2i8zgqy/image/upload/v1675009118/uploads/cbnk4la14dbr9o4vpamc.png',
-    sizes: [
-      { dimension: { value: 1, name: 'small' }, price: 390.0 },
-      { dimension: { value: 2, name: 'medium' }, price: 620.0 },
-    ],
-    extras: [
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-      {
-        text: 'mayonaiyz',
-        price: 2.0,
-      },
-    ],
+  pizza: IPizza = {
+    desc: '',
+    title: '',
+    extras: [],
+    id: '',
+    sizes: [],
+    img: '',
   };
+  id: string | null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private pizzaService: PizzaService,
+  ) {
+    this.id = route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
-    this.product.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    this.pizzaService
+      .getOne(this.id as string)
+      .subscribe((res) => (this.pizza = res));
   }
 }

@@ -9,5 +9,5 @@ export interface IPizza {
     dimension: { name: string; value: number };
     price: number;
   }[];
-  extraOptions: IExtra[];
+  extras: IExtra[];
 }
