@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<div class="container">
+  <div class="item">
+    <h1 class="title">Personal Information</h1>
+    <table class="table">
+      <thead>
+        <tr class="trTitle">
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="trTitle">
+          <td>Name:</td>
+          <td>Darko</td>
+        </tr>
+        <tr class="trTitle">
+          <td>Surname:</td>
+          <td>Darko</td>
+        </tr>
+        <tr class="trTitle">
+          <td>Address:</td>
+          <td>Darko</td>
+        </tr>
+        <tr class="trTitle">
+          <td>Phone Number:</td>
+          <td>Darko</td>
+        </tr>
+        <tr class="trTitle">
+          <td>Payment Method:</td>
+          <td>Darko</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="item">
+    <h1 class="title">Orders</h1>
+    <table class="table">
+      <thead>
+        <tr class="trTitle">
+          <td>Id</td>
+          <td>Customer</td>
+          <td>Total</td>
+          <td>Payment</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let order of orders">
+        <tr class="trTitle">
+          <td>{{ order.id }}</td>
+          <td>{{ order.customer }}</td>
+          <td>{{ order.total }}</td>
+          <td>
+            <span>{{ order.paymentMethod.name }}</span>
+          </td>
+          <td>{{ order.status.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

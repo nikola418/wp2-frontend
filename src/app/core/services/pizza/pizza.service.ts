@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IPizza } from '../models/pizza';
+import { AuthService } from '../auth/auth.service';
+import { IPizza } from '../../models/pizza';
 
 @Injectable({
   providedIn: 'root',
