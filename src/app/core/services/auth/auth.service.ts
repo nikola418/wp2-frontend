@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../models/user';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { selectUser } from '../../selectors/user';
 import { setUser } from '../../actions/user.actions';
 import { UserRole } from '../../enums/user-role';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

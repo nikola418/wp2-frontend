@@ -17,7 +17,7 @@
     </div>
     <div class="item">
       <img
-        *ngIf="!burgerOpen; else close"
+        *ngIf="!isBurgerOpen; else close"
         src="/assets/img/hamburger-menu-white.svg"
         alt=""
         height="32px"
@@ -28,7 +28,7 @@
       />
       <ng-template #close>
         <img
-          *ngIf="burgerOpen"
+          *ngIf="isBurgerOpen"
           src="/assets/img/close-white.svg"
           alt=""
           height="28px"
@@ -39,12 +39,14 @@
         />
       </ng-template>
     </div>
-    <div class="item" [class.menu]="burgerOpen">
+    <div class="item" [class.menu]="isBurgerOpen">
       <ul class="list">
         <a routerLink="">
           <li class="listItem">Homepage</li>
         </a>
-        <li class="listItem">Products</li>
+        <a routerLink="/products">
+          <li class="listItem">Products</li>
+        </a>
         <li class="listItem">Menu</li>
         <a routerLink="">
           <img
@@ -55,8 +57,8 @@
         </a>
         <li class="listItem">Events</li>
         <li class="listItem">Blog</li>
-        <a routerLink="/admin">
-          <li class="listItem">Contact</li>
+        <a [routerLink]="isAdmin ? '/admin' : '/profile'">
+          <li class="listItem">{{ isAdmin ? 'Dashboard' : 'Profile' }}</li>
         </a>
       </ul>
     </div>

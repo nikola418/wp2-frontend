@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: var(--brown);
+}
+
+.desc {
+  font-size: 24px;
+  color: var(--green);
+  text-align: center;
+  width: 70%;
+}

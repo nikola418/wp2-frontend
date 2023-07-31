@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.development';
 import { cartReducer } from './core/reducers/cart';
 import { userReducer } from './core/reducers/user';
 import { httpInterceptorProviders } from './core/interceptors/http';
+import { ProfileComponent } from './features/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { httpInterceptorProviders } from './core/interceptors/http';
     LayoutComponent,
     FooterComponent,
     PageNotFoundComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

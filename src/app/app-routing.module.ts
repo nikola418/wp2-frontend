@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { ProductsModule } from './features/products/products.module';
+import { ProductsModule } from './features/product/product.module';
 import { AuthModule } from './features/auth/auth.module';
 import { HomeModule } from './features/home/home.module';
 import { CartModule } from './features/cart/cart.module';
@@ -21,6 +21,7 @@ const routes: Routes = [
       },
       { path: 'auth', loadChildren: () => AuthModule },
       { path: 'admin', loadChildren: () => AdminModule },
+      { path: 'profile', loadChildren: () => Component },
       { path: 'products', loadChildren: () => ProductsModule },
       { path: '**', component: PageNotFoundComponent },
     ],
