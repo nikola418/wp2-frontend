@@ -20,8 +20,9 @@ export class OrdersService {
     return this.httpClient.post(`${this.apiUrl}`, dto);
   }
 
-  getAll({ skip = 0, take = 0, sortOrder = 'desc' }: TFilterParms) {
-    return this.httpClient.get(
+  getAll(filters: TFilterParms = { skip: 0, take: 10, sortOrder: 'desc' }) {
+    const { skip, take, sortOrder } = filters;
+    return this.httpClient.get<IOrder[]>(
       `${this.apiUrl}?skip=${skip}&take=${take}&sortOrder=${sortOrder}`,
     );
   }

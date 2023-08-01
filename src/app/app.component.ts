@@ -8,9 +8,10 @@ import { AuthService } from './core/services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'wp2-frontend';
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.me();
+    this.authService.getMe();
   }
 }

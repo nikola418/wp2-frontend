@@ -1,23 +1,23 @@
 <div class="container">
   <div class="left">
     <div class="imgContainer">
-      <img src="{{ pizza.img }}" alt="" />
+      <img src="{{ pizza?.img }}" alt="" />
     </div>
   </div>
   <div class="right">
-    <h1 class="title">ID OF: {{ pizza.id }}</h1>
+    <h1 class="title">ID OF: {{ pizza?.id }}</h1>
     <span class="price"></span>
     <p class="desc"></p>
     <h3 class="choose">a</h3>
     <div class="sizes">
-      <div *ngFor="let size of pizza.sizes" class="size">
+      <div *ngFor="let size of pizza?.sizes" class="size">
         <img src="/assets/img/size.png" alt="" [class]="size.dimension.name" />
         <span class="number">{{ size.dimension.name }}</span>
       </div>
     </div>
     <h3 class="choose">Choose additional ingredients</h3>
     <div class="ingredients">
-      <div *ngFor="let extra of pizza.extras" class="option">
+      <div *ngFor="let extra of pizza?.extras" class="option">
         <input
           type="checkbox"
           class="checkbox"

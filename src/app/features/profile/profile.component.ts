@@ -37,7 +37,7 @@ export class ProfilePageComponent {
   ) {
     this.user$ = this.store.select(selectUser);
     this.user$.subscribe((res) => {
-      if (res === null) this.authService.me();
+      if (res === null) this.authService.getMe();
     });
   }
 }

@@ -57,8 +57,24 @@
         </a>
         <li class="listItem">Events</li>
         <li class="listItem">Blog</li>
-        <a [routerLink]="isAdmin ? '/admin' : '/profile'">
-          <li class="listItem">{{ isAdmin ? 'Dashboard' : 'Profile' }}</li>
+        <a
+          [routerLink]="
+            (user$ | async)
+              ? (isAdmin$ | async)
+                ? '/admin/dashboard'
+                : '/profile'
+              : '/auth'
+          "
+        >
+          <li class="listItem">
+            {{
+              (user$ | async)
+                ? (isAdmin$ | async)
+                  ? 'Dashboard'
+                  : 'Profile'
+                : 'Sign In'
+            }}
+          </li>
         </a>
       </ul>
     </div>

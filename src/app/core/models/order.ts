@@ -3,6 +3,7 @@ import { IPizza } from './pizza';
 import { IUser } from './user';
 
 export interface IOrder {
+  id: string;
   customer: string & IUser;
   address: string;
   total: number;

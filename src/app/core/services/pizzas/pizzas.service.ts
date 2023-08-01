@@ -3,20 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { IPizza } from '../../models/pizza';
+import { TFilterParms } from '../../utils/filter-params/filter-params.type';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PizzaService {
+export class PizzasService {
   private readonly apiUrl = `${environment.apiUrl}/pizzas`;
   constructor(
     private authService: AuthService,
     private httpClient: HttpClient,
   ) {}
 
-  getAll(skip = 0, take = 12) {
+  getAll(filters: TFilterParms = { skip: 0, take: 10, sortOrder: 'desc' }) {
+    const { skip, take, sortOrder } = filters;
     return this.httpClient.get<IPizza[]>(
-      `${this.apiUrl}?skip=${skip}&take=${take}`,
+      `${this.apiUrl}?skip=${skip}&take=${take}&sortOrder=${sortOrder}`,
     );
   }
 

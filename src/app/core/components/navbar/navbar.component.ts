@@ -1,29 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom, map, shareReplay } from 'rxjs';
 import { selectCartCount } from '../../selectors/cart';
 import { AuthService } from '../../services/auth/auth.service';
+import { IUser } from '../../models/user';
+import { UserRole } from '../../enums/user-role';
+import { selectUser } from '../../selectors/user';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   cartCount$: Observable<number>;
+  user$: Observable<IUser | null>;
+  isAdmin$: Observable<boolean>;
   isBurgerOpen = false;
-  isAdmin = false;
   containerStyles = '';
 
-  constructor(
-    private store: Store,
-    private authService: AuthService,
-  ) {
+  constructor(private store: Store) {
     this.cartCount$ = this.store.select(selectCartCount);
-  }
-
-  async ngOnInit() {
-    this.isAdmin = await this.authService.isAdmin();
+    this.user$ = this.store.select<IUser | null>(selectUser);
+    this.isAdmin$ = this.user$.pipe(
+      map((val) => val !== null && val.role.value === UserRole.Admin),
+    );
   }
 
   handleBurgerClick() {

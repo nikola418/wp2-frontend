@@ -32,8 +32,8 @@ import { httpInterceptorProviders } from './core/interceptors/http';
     StoreModule.forRoot({ cart: cartReducer, user: userReducer }),
     environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
+  exports: [AppRoutingModule],
   providers: [CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent],
-  exports: [AppRoutingModule],
 })
 export class AppModule {}

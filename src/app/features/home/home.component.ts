@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPizza } from 'src/app/core/models/pizza';
-import { PizzaService } from 'src/app/core/services/pizza/pizza.service';
+import { PizzasService } from 'src/app/core/services/pizzas/pizzas.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,10 @@ import { PizzaService } from 'src/app/core/services/pizza/pizza.service';
 })
 export class HomePageComponent implements OnInit {
   pizzas: IPizza[] = [];
-  constructor(private pizzaService: PizzaService) {}
+  constructor(private pizzasService: PizzasService) {}
 
   ngOnInit(): void {
-    this.pizzaService.getAll().subscribe((res) => {
+    this.pizzasService.getAll().subscribe((res) => {
       this.pizzas = res;
     });
   }

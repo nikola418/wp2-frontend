@@ -5,9 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { IUser } from '../../models/user';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../selectors/user';
-import { setUser } from '../../actions/user.actions';
-import { UserRole } from '../../enums/user-role';
-import { firstValueFrom } from 'rxjs';
+import { dropUser, setUser } from '../../actions/user.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +19,14 @@ export class AuthService {
   ) {}
 
   signIn(email: string, password: string) {
-    firstValueFrom(
-      this.httpClient.post(`${this.apiUrl}/sign-in`, {
+    this.httpClient
+      .post(`${this.apiUrl}/sign-in`, {
         email,
         password,
-      }),
-    );
-
-    return this.me();
+      })
+      .subscribe(() => {
+        this.getMe();
+      });
   }
 
   signUp(
@@ -50,25 +48,18 @@ export class AuthService {
   }
 
   signOut() {
-    return this.httpClient.get(`${this.apiUrl}/sign-out`, {});
+    this.httpClient
+      .get(`${this.apiUrl}/sign-out`)
+      .subscribe(() => this.store.dispatch(dropUser()));
   }
 
-  async me() {
-    const savedUser = await firstValueFrom(this.store.select(selectUser));
-    if (savedUser) {
-      return savedUser;
-    }
-
-    const user = await firstValueFrom(
-      this.httpClient.get<IUser>(`${this.apiUrl}/me`),
-    );
-
-    this.store.dispatch(setUser(user));
-    return user;
+  getMe() {
+    return this.httpClient.get<IUser>(`${this.apiUrl}/me`).subscribe((user) => {
+      this.store.dispatch(setUser(user));
+    });
   }
 
-  async isAdmin() {
-    const savedUser = await firstValueFrom(this.store.select(selectUser));
-    return savedUser !== null && savedUser.role.value === UserRole.Admin;
+  isAdmin() {
+    return this.store.select(selectUser);
   }
 }
