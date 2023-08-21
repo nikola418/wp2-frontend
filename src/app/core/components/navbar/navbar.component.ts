@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, lastValueFrom, map, shareReplay } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { selectCartCount } from '../../selectors/cart';
-import { AuthService } from '../../services/auth/auth.service';
 import { IUser } from '../../models/user';
 import { UserRole } from '../../enums/user-role';
 import { selectUser } from '../../selectors/user';

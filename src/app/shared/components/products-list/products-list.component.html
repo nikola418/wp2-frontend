@@ -1,8 +1,13 @@
 <div class="container">
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="pizzas.length !== 0; else noPizzas">
     <app-product-card
       *ngFor="let pizza of pizzas"
       [pizza]="pizza"
     ></app-product-card>
   </div>
+  <ng-template #noPizzas>
+    <div class="wrapper">
+      <p>Unfortunately, there are no featured pizzas!</p>
+    </div>
+  </ng-template>
 </div>

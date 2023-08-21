@@ -1,7 +1,7 @@
 import { IExtra } from './extra';
 
 export interface IPizza {
-  id: string;
+  id?: string;
   title: string;
   desc: string;
   img?: string;

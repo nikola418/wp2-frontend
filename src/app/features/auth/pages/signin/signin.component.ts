@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -11,7 +10,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class SignInPageComponent {
   email = '';
   password = '';
-  error: HttpErrorResponse | null = null;
+  error: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -19,8 +18,14 @@ export class SignInPageComponent {
   ) {}
 
   handleSignIn() {
-    this.authService.signIn(this.email, this.password);
-
-    this.router.navigate(['/home']);
+    this.authService.signIn(this.email, this.password).subscribe(
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/home']);
+      },
+      (err) => {
+        this.error = err;
+      },
+    );
   }
 }

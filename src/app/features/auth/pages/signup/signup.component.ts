@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
@@ -14,8 +15,11 @@ export class SignupPageComponent {
   phoneNumber = '';
   address = '';
 
-  constructor(private authService: AuthService) {}
-  error = null;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+  error: string | null = null;
 
   handleSignUp() {
     this.authService
@@ -27,6 +31,16 @@ export class SignupPageComponent {
         this.phoneNumber,
         this.address,
       )
-      .subscribe((res) => console.log(res));
+      .subscribe(
+        (res) => {
+          this.router.navigate(['auth/signin']);
+        },
+        (err) => {
+          this.error = err;
+        },
+        () => {
+          return;
+        },
+      );
   }
 }

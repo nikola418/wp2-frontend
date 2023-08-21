@@ -35,3 +35,50 @@
     flex-direction: column;
   }
 }
+
+.row {
+  display: flex;
+}
+
+.done {
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.undone {
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.3;
+}
+
+.inProgress {
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: inProgress 1s ease infinite alternate;
+}
+
+td {
+  text-align: center;
+}
+
+@keyframes inProgress {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.checkedIcon {
+  height: 20px;
+}
+.undone .checkedIcon,
+.inProgress .checkedIcon {
+  display: none;
+}

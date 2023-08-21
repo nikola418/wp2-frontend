@@ -5,15 +5,21 @@
     <h1 class="title">Add a new Pizza</h1>
     <div class="item">
       <label for="" class="label">Choose an Image</label>
-      <input type="file" name="" id="" [(ngModel)]="file" />
+      <input type="file" name="" id="" (change)="setFile($event)" />
     </div>
     <div class="item">
       <label for="" class="label">Title</label
-      ><input type="text" name="" id="" class="input" [(ngModel)]="title" />
+      ><input
+        type="text"
+        name=""
+        id=""
+        class="input"
+        [(ngModel)]="pizza.title"
+      />
     </div>
     <div class="item">
       <label for="" class="label">Desc</label>
-      <textarea name="" id="" rows="5" [(ngModel)]="desc"></textarea>
+      <textarea name="" id="" rows="5" [(ngModel)]="pizza.desc"></textarea>
     </div>
     <div class="item">
       <label for="" class="label">Prices</label>
@@ -24,7 +30,7 @@
           id=""
           placeholder="Small"
           class="input s"
-          [(ngModel)]="prices.small"
+          (change)="setPrice($event, 0)"
         />
         <input
           type="number"
@@ -32,7 +38,7 @@
           id=""
           placeholder="Medium"
           class="input s"
-          [(ngModel)]="prices.medium"
+          (change)="setPrice($event, 1)"
         /><br />
         <input
           type="number"
@@ -40,7 +46,7 @@
           id=""
           placeholder="Large"
           class="input s"
-          [(ngModel)]="prices.large"
+          (change)="setPrice($event, 2)"
         />
         <input
           type="number"
@@ -48,28 +54,37 @@
           id=""
           placeholder="Extra Large"
           class="input s"
-          [(ngModel)]="prices.extraLarge"
+          (change)="setPrice($event, 3)"
         />
       </div>
       <div class="item">
         <label for="" class="label">Extras</label>
         <div class="extrasContainer">
-          <input type="text" name="" id="" placeholder="Name" class="input s" />
+          <input
+            type="text"
+            name="text"
+            id=""
+            placeholder="Name"
+            class="input s"
+            (change)="handleExtra($event)"
+          />
           <input
             type="number"
-            name=""
+            name="price"
             id=""
             placeholder="Price"
             class="input s"
+            (change)="handleExtra($event)"
           />
           <button className="extraButton" (click)="handleExtras()">Add</button>
         </div>
         <div class="extraItems">
-          <span *ngFor="let extra of extraOptions" class="extraItems"
-            >{{ extra.text }}-{{ extra.price }}</span
-          >
+          <span *ngFor="let extra of pizza.extras" class="extraItems"
+            >{{ extra.text }} - RSD{{ extra.price }},&nbsp;
+          </span>
         </div>
       </div>
     </div>
+    <button className="addButton" (click)="handleCreate()">Create</button>
   </div>
 </div>

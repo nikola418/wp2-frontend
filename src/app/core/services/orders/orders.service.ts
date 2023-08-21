@@ -3,11 +3,21 @@ import { IOrder } from '../../models/order';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { TFilterParms } from '../../utils/filter-params/filter-params.type';
+import { PaymentMethod } from '../../enums/payment-method';
+import { OrderStatus } from '../../enums/order-status';
 
-export type TCreateOrder = Pick<
-  IOrder,
-  'address' | 'entries' | 'total' | 'paymentMethod'
->;
+export type TCreateOrder = {
+  address: string;
+  total: number;
+  paymentMethod: PaymentMethod;
+  entries: {
+    pizza: string;
+    count: number;
+    dimension: { name: string; value: number };
+    extras: string[];
+  }[];
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -27,7 +37,12 @@ export class OrdersService {
     );
   }
 
-  updateById(id: string, dto: Partial<IOrder>) {
+  updateById(
+    id: string,
+    dto: Partial<{
+      status: number;
+    }>,
+  ) {
     return this.httpClient.patch(`${this.apiUrl}/${id}`, dto);
   }
 }

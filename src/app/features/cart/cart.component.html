@@ -12,25 +12,43 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products" class="tr">
+        <tr *ngFor="let product of (cart | async)?.products" class="tr">
           <td>
-            <div class="imgContainer">
-              <img src="{{ product.img }}" alt="" class="img" />
+            <div style="display: flex; justify-content: center">
+              <div class="imgContainer">
+                <img src="{{ product.pizza.img }}" alt="" class="img" />
+              </div>
             </div>
           </td>
           <td>
-            <span class="name">{{ product.title }}</span>
+            <div style="display: flex; justify-content: center">
+              <span class="name">{{ product.pizza.title }}</span>
+            </div>
           </td>
           <td>
-            <span class="extras">
-              <span *ngFor="let extra of product.extras">
-                {{ extra.text }}
+            <div style="display: flex; justify-content: center">
+              <span class="extras">
+                <span *ngFor="let extra of product.extras">
+                  {{ extra.text }}
+                </span>
               </span>
-            </span>
+            </div>
           </td>
-          <td><span class="price">112</span></td>
-          <td><span class="quantity"></span></td>
-          <td><span class="total"></span></td>
+          <td>
+            <div style="display: flex; justify-content: center">
+              <span class="price">RSD{{ product.price }}</span>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; justify-content: center">
+              <span class="quantity">{{ product.count }}</span>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; justify-content: center">
+              <span class="total">{{ product.total }}</span>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -39,11 +57,13 @@
     <div class="wrapper">
       <h2 class="title">CART TOTAL</h2>
       <div class="totalText">
-        <b class="totalTextTitle">Subtotal:</b>
+        <b class="totalTextTitle">Subtotal: RSD {{ (cart | async)?.total }}</b>
       </div>
-      <div class="totalText"><b class="totalTextTitle">Discount:</b>$0.0</div>
       <div class="totalText">
-        <b class="totalTextTitle">Total:</b>
+        <b class="totalTextTitle">Discount:</b>RSD 0.0
+      </div>
+      <div class="totalText">
+        <b class="totalTextTitle">Total: RSD {{ (cart | async)?.total }}</b>
       </div>
       <div *ngIf="isOpen; else checkoutButton" class="paymentMethods">
         <button (click)="handleCash()" class="payButton">
@@ -55,5 +75,8 @@
       </ng-template>
     </div>
   </div>
-  <app-order-details *ngIf="isCash"></app-order-details>
+  <app-order-details
+    [isOpen]="isCash"
+    (updateParent)="handleCash()"
+  ></app-order-details>
 </div>

@@ -5,12 +5,17 @@
     </div>
   </div>
   <div class="right">
-    <h1 class="title">ID OF: {{ pizza?.id }}</h1>
-    <span class="price"></span>
-    <p class="desc"></p>
-    <h3 class="choose">a</h3>
+    <h1 class="title">{{ pizza?.title }}</h1>
+    <span class="price">RSD {{ price }}</span>
+    <p class="desc">{{ pizza?.desc }}</p>
+    <h3 class="choose">Choose a size:</h3>
     <div class="sizes">
-      <div *ngFor="let size of pizza?.sizes" class="size">
+      <div
+        *ngFor="let size of pizza?.sizes"
+        class="size"
+        (click)="handleSize(size)"
+        aria-hidden="true"
+      >
         <img src="/assets/img/size.png" alt="" [class]="size.dimension.name" />
         <span class="number">{{ size.dimension.name }}</span>
       </div>
@@ -23,6 +28,7 @@
           class="checkbox"
           name="extra.text"
           id="extra.text"
+          (click)="handleExtra($event, extra)"
         />
         <label for="extra.text">{{ extra.text }}</label>
       </div>
@@ -34,8 +40,9 @@
         min="1"
         max="9"
         class="quantity"
+        (change)="handleCount($event)"
       />
-      <button class="button">Add To Cart</button>
+      <button class="button" (click)="handleAddToCart()">Add To Cart</button>
     </div>
   </div>
 </div>

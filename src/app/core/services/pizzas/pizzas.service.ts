@@ -27,7 +27,7 @@ export class PizzasService {
   }
 
   getOfTheDay() {
-    return this.httpClient.get(`${this.apiUrl}/of-the-day`);
+    return this.httpClient.get<IPizza[]>(`${this.apiUrl}/of-the-day`);
   }
 
   create(dto: IPizza) {

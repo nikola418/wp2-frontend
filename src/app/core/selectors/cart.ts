@@ -10,3 +10,8 @@ export const selectCartTotal = createSelector(
   createFeatureSelector<ICart>('cart'),
   (state) => state.total,
 );
+
+export const selectCart = createSelector(
+  createFeatureSelector<ICart>('cart'),
+  (state) => state,
+);

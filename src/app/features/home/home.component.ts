@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
   constructor(private pizzasService: PizzasService) {}
 
   ngOnInit(): void {
-    this.pizzasService.getAll().subscribe((res) => {
+    this.pizzasService.getOfTheDay().subscribe((res) => {
       this.pizzas = res;
     });
   }

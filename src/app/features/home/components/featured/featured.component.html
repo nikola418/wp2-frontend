@@ -8,8 +8,8 @@
     />
   </div>
   <div class="wrapper" [style.transform]="translate">
-    <div *ngFor="let img of images" class="imgContainer">
-      <img src="{{ '/assets' + img }}" alt="Featured" />
+    <div *ngFor="let img of imageUrls" class="imgContainer">
+      <img src="{{ img }}" alt="Featured" />
     </div>
   </div>
   <div

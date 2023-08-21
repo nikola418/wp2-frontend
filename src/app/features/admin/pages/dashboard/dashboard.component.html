@@ -1,4 +1,10 @@
-<app-add-product></app-add-product>
+<div style="display: flex; justify-content: space-between">
+  <app-add-product
+    [updateStatus]="refresh"
+    (updateParent)="handleRefresh($event)"
+  ></app-add-product>
+  <app-logout></app-logout>
+</div>
 <div class="container">
   <div class="item">
     <h1 class="title">Products</h1>
@@ -15,14 +21,20 @@
       <tbody>
         <tr *ngFor="let pizza of pizzas | async" class="trTitle">
           <td>
-            <img [src]="pizza.img" alt="" />
+            <div class="imgContainer">
+              <img [src]="pizza.img" alt="" />
+            </div>
           </td>
-          <td>{{ pizza.id.slice(0, 5) }}</td>
+          <td>{{ pizza.id?.slice(0, 5) }}</td>
           <td>{{ pizza.title }}</td>
           <td>{{ pizza.sizes[0].price }}</td>
           <td>
-            <button class="button">Edit</button>
-            <button class="button">Delete</button>
+            <button class="button" (click)="handleEdit($event, pizza.id!)">
+              Edit
+            </button>
+            <button class="button" (click)="handleDelete($event, pizza.id!)">
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
@@ -51,7 +63,87 @@
           </td>
           <td>{{ order.status.name }}</td>
           <td>
-            <button class="button">Next Stage</button>
+            <button
+              class="button"
+              (click)="nextStage(order)"
+              [disabled]="order.status.value === 4"
+            >
+              Next Stage
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div [class]="statusClass(order, 1)">
+              <img
+                src="assets/img/bake.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 2)">
+              <img
+                src="assets/img/bike.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 3)">
+              <img
+                src="assets/img/delivered.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 4)">
+              <img
+                src="assets/img/paid.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>

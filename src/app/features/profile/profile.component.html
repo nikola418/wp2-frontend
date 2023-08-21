@@ -1,3 +1,6 @@
+<div style="display: flex; justify-content: end">
+  <app-logout></app-logout>
+</div>
 <div class="container">
   <div class="item">
     <h1 class="title">Personal Information</h1>
@@ -11,23 +14,23 @@
       <tbody>
         <tr class="trTitle">
           <td>Name:</td>
-          <td>Darko</td>
+          <td>{{ (user$ | async)?.name }}</td>
         </tr>
         <tr class="trTitle">
           <td>Surname:</td>
-          <td>Darko</td>
+          <td>{{ (user$ | async)?.surname }}</td>
         </tr>
         <tr class="trTitle">
           <td>Address:</td>
-          <td>Darko</td>
+          <td>{{ (user$ | async)?.address }}</td>
         </tr>
         <tr class="trTitle">
           <td>Phone Number:</td>
-          <td>Darko</td>
+          <td>{{ (user$ | async)?.phoneNumber }}</td>
         </tr>
         <tr class="trTitle">
           <td>Payment Method:</td>
-          <td>Darko</td>
+          <td>{{ (user$ | async)?.paymentMethod?.name }}</td>
         </tr>
       </tbody>
     </table>
@@ -38,21 +41,93 @@
       <thead>
         <tr class="trTitle">
           <td>Id</td>
-          <td>Customer</td>
           <td>Total</td>
           <td>Payment</td>
           <td>Status</td>
         </tr>
       </thead>
-      <tbody *ngFor="let order of orders">
+      <tbody *ngFor="let order of orders$ | async">
         <tr class="trTitle">
           <td>{{ order.id }}</td>
-          <td>{{ order.customer }}</td>
           <td>{{ order.total }}</td>
           <td>
             <span>{{ order.paymentMethod.name }}</span>
           </td>
           <td>{{ order.status.name }}</td>
+        </tr>
+        <tr>
+          <td>
+            <div [class]="statusClass(order, 1)">
+              <img
+                src="assets/img/bake.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 2)">
+              <img
+                src="assets/img/bike.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 3)">
+              <img
+                src="assets/img/delivered.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div [class]="statusClass(order, 4)">
+              <img
+                src="assets/img/paid.png"
+                width="30px"
+                height="30px"
+                alt=""
+              />
+              <div class="checkedIcon">
+                <img
+                  src="assets/img/checked.png"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -12,9 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.development';
+import { httpInterceptorProviders } from './core/interceptors/http';
 import { cartReducer } from './core/reducers/cart';
 import { userReducer } from './core/reducers/user';
-import { httpInterceptorProviders } from './core/interceptors/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { httpInterceptorProviders } from './core/interceptors/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
     HttpClientModule,
     StoreModule.forRoot({ cart: cartReducer, user: userReducer }),
     environment.development ? StoreDevtoolsModule.instrument() : [],

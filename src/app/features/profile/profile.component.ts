@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { IOrder } from 'src/app/core/models/order';
 import { IUser } from 'src/app/core/models/user';
 import { selectUser } from 'src/app/core/selectors/user';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { OrdersService } from 'src/app/core/services/orders/orders.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,32 +13,22 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class ProfilePageComponent {
   user$: Observable<IUser | null>;
-  products = [
-    {
-      id: '',
-      img: '',
-      desc: '',
-      title: '',
-      sizes: [{ dimension: { name: 'Medium', value: 2 }, price: 590.0 }],
-    },
-  ];
-  orders = [
-    {
-      id: '1',
-      customer: '1',
-      total: 200,
-      paymentMethod: { name: 'CashOnDelivery', value: 1 },
-      status: { name: 'Ready', value: 3 },
-    },
-  ];
+  orders$: Observable<IOrder[]>;
 
   constructor(
     private store: Store<IUser>,
-    private authService: AuthService,
+    private ordersService: OrdersService,
   ) {
     this.user$ = this.store.select(selectUser);
-    this.user$.subscribe((res) => {
-      if (res === null) this.authService.getMe();
-    });
+    this.orders$ = this.ordersService.getAll();
+  }
+
+  statusClass(order: IOrder, index: number) {
+    if (index === 4) if (index - order.status.value === 0) return 'done';
+
+    if (index - order.status.value < 0) return 'done';
+    if (index - order.status.value === 0) return 'inProgress';
+    if (index - order.status.value > 0) return 'undone';
+    return null;
   }
 }

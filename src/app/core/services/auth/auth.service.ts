@@ -19,13 +19,14 @@ export class AuthService {
   ) {}
 
   signIn(email: string, password: string) {
-    this.httpClient
-      .post(`${this.apiUrl}/sign-in`, {
+    return this.httpClient
+      .post<IUser>(`${this.apiUrl}/sign-in`, {
         email,
         password,
       })
-      .subscribe(() => {
-        this.getMe();
+      .pipe((res) => {
+        res.subscribe(() => this.getMe());
+        return res;
       });
   }
 
@@ -48,14 +49,15 @@ export class AuthService {
   }
 
   signOut() {
-    this.httpClient
+    return this.httpClient
       .get(`${this.apiUrl}/sign-out`)
       .subscribe(() => this.store.dispatch(dropUser()));
   }
 
   getMe() {
-    return this.httpClient.get<IUser>(`${this.apiUrl}/me`).subscribe((user) => {
-      this.store.dispatch(setUser(user));
+    return this.httpClient.get<IUser>(`${this.apiUrl}/me`).pipe((res) => {
+      res.subscribe((user) => this.store.dispatch(setUser(user)));
+      return res;
     });
   }
 

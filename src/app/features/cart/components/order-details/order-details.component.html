@@ -1,10 +1,18 @@
-<div class="container">
+<div class="container" *ngIf="isOpen">
   <div class="wrapper">
-    <span class="close">&times;</span>
+    <span class="close" (click)="handleIsOpen()" aria-hidden="true"
+      >&times;</span
+    >
     <h1 class="tittle">You will pay $12 after delivery.</h1>
     <div class="item">
       <label for="" class="label">Name</label>
-      <input type="text" placeholder="Gricko" class="input" />
+      <input
+        type="text"
+        placeholder="John Doe"
+        class="input"
+        [value]="(user$ | async)?.name"
+        (change)="handleName($event)"
+      />
     </div>
     <div class="item">
       <label for="" class="label">Phone Number</label>
@@ -13,6 +21,8 @@
         placeholder="(+381) 62-97-56-150"
         id=""
         class="input"
+        [value]="(user$ | async)?.phoneNumber"
+        (change)="handleNumber($event)"
       />
     </div>
     <div class="item">
@@ -21,8 +31,10 @@
         rows="5"
         placeholder="Novosadska b.b., Kragujevac"
         class="textarea"
+        [value]="(user$ | async)?.address"
+        (change)="handleAddress($event)"
       ></textarea>
     </div>
-    <button class="button">Order</button>
+    <button class="button" (click)="handleOrder()">Order</button>
   </div>
 </div>
